@@ -1,0 +1,15 @@
+{
+  "name": "sip-webrtc-take-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node_modules/.bin/http-server -S -C ssl/cert.pem -K ssl/key.pem ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "http-server": "^0.11.1"
+  }
+}

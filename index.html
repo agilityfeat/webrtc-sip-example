@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SIP + WebRTC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <h1>SIP + WebRTC</h1>
+    <div id="login">
+        <input type="text" id="localUser" />
+        <button id="btnLogin">Log in</button>
+        <input type="text" id="remoteUser"/>
+        <button id="btnCall">Call</button>
+        <button id="btnHangup">Hangup</button>
+    </div>
+    <div id="call">
+        <video id="localVideo" autoplay></video>
+        <video id="remoteVideo" autoplay></video>
+    </div>
+    <script src="js/jssip-3.2.4.min.js"></script>
+    <script src="js/sdp-interop-sl.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
