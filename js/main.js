@@ -67,11 +67,17 @@ btnLogin.addEventListener('click', () => {
         session.on('ended', data => {
             localVideo.src = ''
             remoteVideo.src = ''
+            remoteUser.style.display = 'inline'
+            btnCall.style.display = 'inline'
+            btnHangup.style.display = 'none'
         })
 
         session.on('confirmed', () => {
             stream = session.connection.getLocalStreams()[0]
             localVideo.srcObject = stream
+            remoteUser.style.display = 'none'
+            btnCall.style.display = 'none'
+            btnHangup.style.display = 'inline'
         })
 
         session.connection.ontrack = evt => {
@@ -81,12 +87,19 @@ btnLogin.addEventListener('click', () => {
 
     ua.on('registered', function (e) {
         console.log('registered', e)
+        
+        localUser.style.display = 'none'
+        btnLogin.style.display = 'none'
+        showUser.innerText = 'Logged as: ' + localUser.value
+        remoteUser.style.display = 'inline'
+        btnCall.style.display = 'inline'
     })
     ua.on('unregistered', function (e) {
         console.log('unregistered', e)
     })
     ua.on('registrationFailed', function (e) {
         console.log('registrationFailed', e)
+        showUser.innerText = 'Username is not valid'
     })
 })
 
