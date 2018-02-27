@@ -17,7 +17,7 @@ Then install the npm dependencies an run the application with npm start. The app
     npm install
     npm start
 
-Open the app in two separate tabs, log in as users `bob` and `lucy`, and click `Call`. Note that no password is required. This is an insecure practice and you definitely don't want to do this in an production environment.
+Open the app in two separate tabs, log in as users `bob` and `lucy`, and click `Call`. Note that an insecure password has been set and you definitely don't want to do this in an production environment.
 
 ## SIP Server
 For the example to work you need to set up an Asterisk Server. We used version 15.
