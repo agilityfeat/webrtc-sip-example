@@ -23,7 +23,8 @@ btnLogin.addEventListener('click', () => {
     var socket = new JsSIP.WebSocketInterface('wss://' + domain + ':8089/ws')
     var configuration = {
         sockets: [socket],
-        uri: 'sip:'+ localUser.value +'@' + domain
+        uri: 'sip:'+ localUser.value +'@' + domain,
+        password: '123456'
     }
 
     ua = new JsSIP.UA(configuration)
