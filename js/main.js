@@ -24,6 +24,7 @@ btnLogin.addEventListener('click', () => {
     var configuration = {
         sockets: [socket],
         uri: 'sip:'+ localUser.value +'@' + domain,
+        authorization_user: localUser.value,
         password: '123456'
     }
 
