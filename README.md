@@ -29,3 +29,7 @@ Configuration files used in this example can be found in the `asterisk-conf` fol
 * We use [http-server](https://www.npmjs.com/package/http-server) to serve the files.
 * We use [jssip](http://jssip.net/) for sip support
 * We use [sdp-interop-sl](https://github.com/StarLeafAPIs/sdp-interop-sl) for making some required adjustments to sdp in chrome
+
+## Other Links
+
+- https://webrtc.ventures/2018/03/webrtc-sip-the-demo/
