@@ -1,5 +1,5 @@
 ---
-- hosts: asterisk-server
+- hosts: asteriskserver
   remote_user: ubuntu
   become: yes
   become_method: sudo

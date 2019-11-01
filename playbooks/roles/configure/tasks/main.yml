@@ -1,0 +1,57 @@
+---
+- name: get the name of asterix folder
+  find:
+    file_type: directory
+    paths: /tmp/
+    pattern: "asterisk-*"
+  register: asterix_folder
+
+- name: Debug 
+  debug:
+    msg: "{{ asterix_folder }}"
+
+- name: Create keys folder
+  file:
+    path: /etc/asterisk/keys
+    state: directory
+
+- name: Create certs
+  shell: contrib/scripts/ast_tls_cert -C 1.2.3.4 -O “My Cool App” -d /etc/asterisk/keys
+  args:
+    chdir: "{{ asterix_folder.files[0].path }}"
+
+- name: Applies http configuration
+  template:
+    src: http.conf.j2
+    dest: /etc/asterisk/http.conf
+    owner: root
+    group: root
+    mode: 644
+    notify: update_asterisk
+
+- name: Applies extensions configuration
+  template:
+    src: extensions.conf.j2
+    dest: /etc/asterisk/extensions.conf
+    owner: root
+    group: root
+    mode: 644
+    notify: update_asterisk
+
+- name: Applies pjsip configuration
+  template:
+    src: pjsip.conf.j2
+    dest: /etc/asterisk/pjsip.conf
+    owner: root
+    group: root
+    mode: 644
+    notify: update_asterisk
+
+- name: Applies rtp configuration
+  template:
+    src: rtp.conf.j2
+    dest: /etc/asterisk/rtp.conf
+    owner: root
+    group: root
+    mode: 644
+    notify: update_asterisk
