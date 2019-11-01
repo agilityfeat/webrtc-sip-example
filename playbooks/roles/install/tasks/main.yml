@@ -1,0 +1,80 @@
+---
+- name: Install dependencies
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - git
+    - curl
+    - wget
+    - libnewt-dev
+    - libssl-dev
+    - libncurses5-dev
+    - subversion
+    - libsqlite3-dev
+    - build-essential
+    - libjansson-dev
+    - libxml2-dev
+    - uuid-dev
+    - libedit-dev
+
+- name: download Asterisk 16
+  get_url:
+    url: http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-16-current.tar.gz
+    dest: /tmp/
+
+- name: untar Asterisk
+  unarchive:
+    src: /tmp/asterisk-16-current.tar.gz
+    dest: /tmp/
+    remote_src: yes
+
+- name: remove compressed file
+  file:
+    path: /tmp/asterisk-16-current.tar.gz
+    state: absent
+
+- name: get the name of asterix folder
+  find:
+    file_type: directory
+    paths: /tmp/
+    pattern: "asterisk-*"
+  register: asterix_folder
+
+- name: Debug 
+  debug:
+    msg: "{{ asterix_folder }}"
+
+- name: Configure ansible
+  shell: ./configure
+  args:
+    chdir: "{{ asterix_folder.files[0].path }}"
+
+- name: Build Asterisk
+  make:
+    chdir: "{{ asterix_folder.files[0].path }}"
+
+- name: Install Asterisk
+  make:
+    chdir: "{{ asterix_folder.files[0].path }}"
+    target: install
+
+- name: Generate Init services for Asterisk
+  make:
+    chdir: "{{ asterix_folder.files[0].path }}"
+    target: config
+
+- name: Generate samples for Asterisk
+  make:
+    chdir: "{{ asterix_folder.files[0].path }}"
+    target: samples
+
+- name: Enable Asterix
+  systemd:
+    enabled: yes
+    name: asterisk
+
+- name: Start Asterix
+  systemd:
+    state: started
+    name: asterisk
