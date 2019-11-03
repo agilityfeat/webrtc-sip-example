@@ -13,7 +13,7 @@ var interop = new SdpInterop.InteropChrome()
 var isChrome = window.chrome
 
 //change this ip to your asterisk server
-const domain = "10.182.106.16"
+const domain = "ec2-34-207-224-230.compute-1.amazonaws.com"
 
 //button events
 
@@ -50,6 +50,7 @@ btnLogin.addEventListener('click', () => {
         }
 
         session.on('sdp', (data) => {
+            console.log('sdp', data)
             if(isChrome) {
                 console.log('doing dark magic in chrome...')
                 let desc = new RTCSessionDescription({
@@ -75,6 +76,7 @@ btnLogin.addEventListener('click', () => {
         })
 
         session.on('confirmed', () => {
+            console.log('confirmed')
             stream = session.connection.getLocalStreams()[0]
             localVideo.srcObject = stream
             remoteUser.style.display = 'none'
@@ -83,6 +85,7 @@ btnLogin.addEventListener('click', () => {
         })
 
         session.connection.ontrack = evt => {
+            console.log('track', evt)
             remoteVideo.srcObject = evt.streams[0]
         }
     })

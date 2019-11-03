@@ -1,8 +1,3 @@
 ---
-- hosts: asteriskserver
-  remote_user: ubuntu
-  become: yes
-  become_method: sudo
-  roles:
-    - install
-    - configure
+- import_playbook: install.yml
+- import_playbook: configure.yml

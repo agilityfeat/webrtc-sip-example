@@ -1,0 +1,5 @@
+---
+- name: update_asterisk
+  service:
+    name: asterisk
+    state: restarted
