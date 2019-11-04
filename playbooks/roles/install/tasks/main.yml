@@ -46,7 +46,7 @@
     msg: "{{ asterix_folder }}"
 
 - name: Configure ansible
-  shell: ./configure
+  shell: ./configure --with-pj-project-bundled
   args:
     chdir: "{{ asterix_folder.files[0].path }}"
 
