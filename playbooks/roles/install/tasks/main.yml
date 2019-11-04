@@ -1,22 +1,11 @@
 ---
 - name: Install dependencies
-  package:
-    name: "{{ item }}"
+  apt:
+    name: ['git', 'curl', 'wget', 'libnewt-dev', 'libssl-dev', 'libncurses5-dev', 'subversion', 'libsqlite3-dev', 'build-essential', 'libjansson-dev', 'libxml2-dev', 'uuid-dev', 'libedit-dev'] 
     state: present
+    update_cache: yes
   with_items:
-    - git
-    - curl
-    - wget
-    - libnewt-dev
-    - libssl-dev
-    - libncurses5-dev
-    - subversion
-    - libsqlite3-dev
-    - build-essential
-    - libjansson-dev
-    - libxml2-dev
-    - uuid-dev
-    - libedit-dev
+    
 
 - name: download Asterisk 16
   get_url:
