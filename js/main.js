@@ -9,11 +9,9 @@ var remoteVideo = document.getElementById('remoteVideo')
 //some useful variables
 var ua = null
 var session = null
-var interop = new SdpInterop.InteropChrome()
-var isChrome = window.chrome
 
 //change this ip to your asterisk server
-const domain = "ec2-34-207-224-230.compute-1.amazonaws.com"
+const domain = "ec2-100-24-22-8.compute-1.amazonaws.com"
 
 //button events
 
@@ -51,20 +49,6 @@ btnLogin.addEventListener('click', () => {
 
         session.on('sdp', (data) => {
             console.log('sdp', data)
-            if(isChrome) {
-                console.log('doing dark magic in chrome...')
-                let desc = new RTCSessionDescription({
-                    type: data.type,
-                    sdp: data.sdp
-                })
-                if (data.originator === 'local') {
-                    converted = interop.toUnifiedPlan(desc)
-                } else {
-                    converted = interop.toPlanB(desc)
-                }
-    
-                data.sdp = converted.sdp
-            }
         })
 
         session.on('ended', data => {

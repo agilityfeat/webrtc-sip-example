@@ -1,11 +1,9 @@
 ---
 - name: Install dependencies
   apt:
-    name: ['git', 'curl', 'wget', 'libnewt-dev', 'libssl-dev', 'libncurses5-dev', 'subversion', 'libsqlite3-dev', 'build-essential', 'libjansson-dev', 'libxml2-dev', 'uuid-dev', 'libedit-dev'] 
+    name: ['python-apt', 'binutils-dev', 'bison', 'build-essential', 'doxygen', 'flex', 'freetds-dev', 'libasound2-dev', 'libbluetooth-dev', 'libcfg-dev', 'libcorosync-common-dev', 'libcpg-dev', 'libcurl4-openssl-dev', 'libedit-dev', 'libfftw3-dev', 'libical-dev', 'libjack-jackd2-dev', 'libjansson-dev', 'libldap2-dev', 'liblua5.2-dev', 'libmysqlclient-dev', 'libneon27-dev', 'libnewt-dev', 'libogg-dev', 'libpopt-dev', 'libpq-dev', 'libsndfile1-dev', 'libsnmp-dev', 'libspeex-dev', 'libspeexdsp-dev', 'libsqlite3-dev', 'libssl-dev', 'libunbound-dev', 'libvorbis-dev', 'libxml2-dev', 'libxslt1-dev', 'pkg-config', 'python-dev', 'unixodbc-dev', 'uuid-dev', 'zlib1g-dev', 'graphviz', 'libc-client2007e-dev', 'libcodec2-dev', 'libgmime-2.6-dev', 'libgsm1-dev', 'libiksemel-dev', 'libosptk-dev', 'libradcli-dev', 'libresample1-dev', 'libspandsp-dev', 'libsrtp0-dev', 'libsrtp2-dev', 'liburiparser-dev', 'libvpb-dev', 'pkgconf', 'portaudio19-dev', 'subversion', 'xmlstarlet'] 
     state: present
-    update_cache: yes
-  with_items:
-    
+    update_cache: yes    
 
 - name: download Asterisk 16
   get_url:
